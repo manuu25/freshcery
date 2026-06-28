@@ -113,14 +113,14 @@
                                         </div>
                                         <div class="card-body">
                                             <h4 class="card-title">
-                                                <a href="detail-product.html"><?php echo $allmostProduct->title; ?></a>
+                                                <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $allmostProduct->id; ?>"><?php echo $allmostProduct->title; ?></a>
                                             </h4>
                                             <div class="card-price">
                                                 <!-- <span class="discount">Rp. 300.000</span> -->
                                                 <span class="reguler"><?php echo $allmostProduct->price; ?>$</span>
                                             </div>
                                             <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $allmostProduct->id; ?>" class="btn btn-block btn-primary">
-                                                Add to Cart
+                                                View Product
                                             </a>
 
                                         </div>
@@ -161,14 +161,14 @@
                                         </div>
                                         <div class="card-body">
                                             <h4 class="card-title">
-                                                <a href="detail-product.html"><?php echo $allvigi->title; ?></a>
+                                                <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $allvigi->id; ?>"><?php echo $allvigi->title; ?></a>
                                             </h4>
                                             <div class="card-price">
                                                 <!-- <span class="discount">Rp. 300.000</span> -->
                                                 <span class="reguler">$ <?php echo $allvigi->price; ?></span>
                                             </div>
                                             <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $allvigi->id; ?>" class="btn btn-block btn-primary">
-                                                Add to Cart
+                                                View Product
                                             </a>
 
                                         </div>
@@ -205,18 +205,18 @@
                                                 20% OFF
                                             </span>
                                         </div>
-                                        <img src="<?php echo IMGURLPRODUCT; ?>/meats.jpg" alt="Card image 2" class="card-img-top">
+                                        <img src="<?php echo IMGURLPRODUCT; ?>/<?php echo $meat->image; ?>" alt="<?php echo $meat->title; ?>" class="card-img-top">
                                     </div>
                                     <div class="card-body">
                                         <h4 class="card-title">
-                                            <a href="detail-product.html"><?php echo $meat->title; ?></a>
+                                            <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $meat->id; ?>"><?php echo $meat->title; ?></a>
                                         </h4>
                                         <div class="card-price">
                                             <!-- <span class="discount">Rp. 300.000</span> -->
                                             <span class="reguler">$. <?php echo $meat->price; ?></span>
                                         </div>
                                         <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $meat->id; ?>" class="btn btn-block btn-primary">
-                                            Add to Cart
+                                            View Product
                                         </a>
 
                                     </div>
@@ -257,14 +257,14 @@
                                         </div>
                                         <div class="card-body">
                                             <h4 class="card-title">
-                                                <a href="detail-product.html"><?php echo $fish->title; ?></a>
+                                                <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $fish->id; ?>"><?php echo $fish->title; ?></a>
                                             </h4>
                                             <div class="card-price">
                                                 <!-- <span class="discount">Rp. 300.000</span> -->
                                                 <span class="reguler">$. <?php echo $fish->price; ?></span>
                                             </div>
                                             <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $fish->id; ?>" class="btn btn-block btn-primary">
-                                                Add to Cart
+                                                View Product
                                             </a>
 
                                         </div>
@@ -305,14 +305,14 @@
                                         </div>
                                         <div class="card-body">
                                             <h4 class="card-title">
-                                                <a href="detail-product.html"><?php echo $fruit->title; ?></a>
+                                                <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $fruit->id; ?>"><?php echo $fruit->title; ?></a>
                                             </h4>
                                             <div class="card-price">
                                                 <!-- <span class="discount">Rp. 300.000</span> -->
                                                 <span class="reguler">$ <?php echo $fruit->price; ?></span>
                                             </div>
                                             <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $fruit->id; ?>" class="btn btn-block btn-primary">
-                                                Add to Cart
+                                                View Product
                                             </a>
 
                                         </div>

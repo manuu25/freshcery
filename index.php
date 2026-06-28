@@ -84,7 +84,7 @@
         </div>
 
         <section id="why">
-            <h2 class="title">Why Freschery</h2>
+            <h2 class="title">Why Freshcery</h2>
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">

@@ -24,14 +24,14 @@
                     </div>
                     <div class="col-md-10">
                         <p class="text-justify">
-                            Occaecat sunt id anim officia laborum incididunt dolore sit consequat consectetur enim fugiat aute culpa consequat cillum incididunt officia sed esse laborum anim aliqua et duis reprehenderit commodo do dolor dolor deserunt esse in aute anim adipisicing deserunt eu tempor veniam magna magna nulla in ea nulla elit est do veniam dolor pariatur in ut deserunt adipisicing est anim proident occaecat aliquip sunt enim occaecat cillum commodo in duis fugiat pariatur officia aliquip anim in dolore id id pariatur pariatur enim quis excepteur proident incididunt dolor consequat nisi et veniam occaecat sed exercitation dolore eiusmod elit sed voluptate adipisicing ut irure ad ut ex deserunt exercitation amet in eu quis ut occaecat non sunt labore reprehenderit elit commodo aute ea occaecat tempor dolor sed ut cillum aute et pariatur sit consequat commodo sunt sit amet nulla commodo aute laborum non ullamco ea laboris do adipisicing quis consequat adipisicing ea cupidatat et minim pariatur sed amet cillum commodo pariatur fugiat duis id amet ut exercitation voluptate culpa fugiat nostrud aute.
+                            Freshcery is an online organic grocery store built on a simple farm-to-table promise: get the freshest produce from local farms to your table within a day. By shortening the supply chain, we keep prices fair for you and returns fair for the farmers who grow your food. From crisp vegetables and ripe fruits to quality meats and fresh fish, every order is hand-picked, packed with care, and delivered straight to your door.
                         </p>
                     </div>
                 </div>
 
                 <div class="row justify-content-center align-items-center mt-3">
                     <div class="col-md-4">
-                        <img src="assets/img/fruits.jpg" class="img-fluid">
+                        <img src="<?php echo IMGURLPRODUCT; ?>/fruits.jpg" class="img-fluid" alt="Fresh fruits">
                     </div>
                     <div class="col-md-6">
                         <h5>
@@ -65,13 +65,13 @@
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <img src="assets/img/vegetables.jpg" class="img-fluid">
+                        <img src="<?php echo IMGURLPRODUCT; ?>/vegetables.jpg" class="img-fluid" alt="Fresh vegetables">
                     </div>
                 </div>
 
                 <div class="row justify-content-center align-items-center mt-3">
                     <div class="col-md-4">
-                        <img src="assets/img/fish.jpg" class="img-fluid">
+                        <img src="<?php echo IMGURLPRODUCT; ?>/fish.jpg" class="img-fluid" alt="Fresh fish">
                     </div>
                     <div class="col-md-6">
                         <h5>

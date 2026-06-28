@@ -92,7 +92,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="slider-zoom">
-                            <a href="<?php echo APPURL; ?>/assets/img/<?php echo $product->image; ?>" class="cloud-zoom" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: false, zoomWidth:'500', zoomHeight:'500', adjustY:0, adjustX:10" id="cloudZoom">
+                            <a href="<?php echo IMGURLPRODUCT; ?>/<?php echo $product->image; ?>" class="cloud-zoom" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: false, zoomWidth:'500', zoomHeight:'500', adjustY:0, adjustX:10" id="cloudZoom">
                                 <img alt="Detail Zoom thumbs image" src="<?php echo IMGURLPRODUCT; ?>/<?php echo $product->image; ?>" style="width: 100%;">
                             </a>
                         </div>
@@ -196,18 +196,18 @@
                                                     20% OFF
                                                 </span>
                                             </div>
-                                            <img src="<?php echo APPURL; ?>/assets/img/<?php echo $products->image; ?>" alt="Card image 2" class="card-img-top">
+                                            <img src="<?php echo IMGURLPRODUCT; ?>/<?php echo $products->image; ?>" alt="<?php echo $products->title; ?>" class="card-img-top">
                                         </div>
                                         <div class="card-body">
                                             <h4 class="card-title">
-                                                <a href="detail-product.html"><?php echo $products->title; ?></a>
+                                                <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $products->id; ?>"><?php echo $products->title; ?></a>
                                             </h4>
                                             <div class="card-price">
                                                 <!-- <span class="discount">Rp. 300.000</span> -->
                                                 <span class="reguler">$ <?php echo $products->price; ?></span>
                                             </div>
                                             <a href="<?php echo APPURL; ?>/products/detail-product.php?id=<?php echo $products->id; ?>" class="btn btn-block btn-primary">
-                                                Add to Cart
+                                                View Product
                                             </a>
 
                                         </div>
