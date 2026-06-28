@@ -2,10 +2,13 @@
 
     
     session_start();
-    define("APPURL","http://localhost/freshcery");
-    
-    define("IMGURLCATEGORY", "http://localhost/freshcery/admin-panel/categories-admins/img_category");
-    define("IMGURLPRODUCT", "http://localhost/freshcery/admin-panel/products-admins/img_product");
+
+    // Base URL: explicit APP_URL wins, else Render injects RENDER_EXTERNAL_URL,
+    // else fall back to the local XAMPP/WAMP path.
+    define("APPURL", rtrim(getenv('APP_URL') ?: getenv('RENDER_EXTERNAL_URL') ?: "http://localhost/freshcery", '/'));
+
+    define("IMGURLCATEGORY", APPURL . "/admin-panel/categories-admins/img_category");
+    define("IMGURLPRODUCT", APPURL . "/admin-panel/products-admins/img_product");
 
     require dirname(dirname(__FILE__)) . "/config/config.php";
 

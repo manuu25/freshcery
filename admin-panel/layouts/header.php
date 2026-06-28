@@ -1,7 +1,7 @@
 <?php 
 
   session_start();
-  define("ADMINURL", "http://localhost/freshcery/admin-panel");
+  define("ADMINURL", rtrim(getenv('APP_URL') ?: getenv('RENDER_EXTERNAL_URL') ?: "http://localhost/freshcery", '/') . "/admin-panel");
 
 ?>
 

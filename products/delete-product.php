@@ -2,7 +2,7 @@
 
     if(!isset($_SERVER['HTTP_REFERER'])){
         // redirect them to your desired location
-        header('location: http://localhost/freshcery/index.php');
+        header('location: '.(getenv('APP_URL') ?: getenv('RENDER_EXTERNAL_URL') ?: 'http://localhost/freshcery').'/index.php');
         exit;
     }
 
