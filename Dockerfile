@@ -15,6 +15,7 @@ RUN { \
       echo "display_errors = Off"; \
       echo "error_reporting = E_ERROR | E_PARSE"; \
       echo "log_errors = On"; \
+      echo "output_buffering = 4096"; \
     } > /usr/local/etc/php/conf.d/zz-app.ini
 
 # Silence the "Could not reliably determine the server's fully qualified domain
