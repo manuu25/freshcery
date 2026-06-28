@@ -57,7 +57,7 @@
                                 </p>
 
                                 <p class="text-light">
-                                    <i class="fas fa-phone"></i> +351 967 150 118<br>
+                                    <i class="fas fa-phone"></i> +351 123 456 789<br>
                                     <i class="fas fa-envelope"></i> support@freshcery.com
                                 </p>
                             </div>

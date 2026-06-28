@@ -29,7 +29,7 @@
                             <i class="fa fa-map-marker"></i> Rua Joaquim Pestana n.&ordm; 2, 9300-145 Câmara de Lobos, Madeira
                         </li>
                          <li>
-                            <a href="tel:+351967150118"><i class="fa fa-phone"></i> +351 967 150 118</a>
+                            <a href="tel:+351123456789"><i class="fa fa-phone"></i> +351 123 456 789</a>
                         </li>
                         <li>
                             <a href="mailto:support@freshcery.com"><i class="fa fa-envelope"></i> support@freshcery.com</a>
