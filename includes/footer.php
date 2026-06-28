@@ -26,10 +26,10 @@
                      <h5>Contact</h5>
                      <ul>
                          <li>
-                            <i class="fa fa-map-marker"></i> 12 Market Street, Funchal, Madeira
+                            <i class="fa fa-map-marker"></i> Rua Joaquim Pestana n.&ordm; 2, 9300-145 Câmara de Lobos, Madeira
                         </li>
                          <li>
-                            <a href="tel:+18005550199"><i class="fa fa-phone"></i> +1 (800) 555-0199</a>
+                            <a href="tel:+351967150118"><i class="fa fa-phone"></i> +351 967 150 118</a>
                         </li>
                         <li>
                             <a href="mailto:support@freshcery.com"><i class="fa fa-envelope"></i> support@freshcery.com</a>

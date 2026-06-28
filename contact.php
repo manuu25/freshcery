@@ -47,19 +47,18 @@
                         <div class="col-lg-5">
                             <div class="detail-wrapper p-5 bg-primary">
                                 <h3 class="font-weight-normal mb-3 text-light">
-                                    Freshcery Headquarter
+                                    Freshcery Headquarters
                                 </h3>
 
                                 <p class="text-light">
-                                    Jl. Petani No. 159, Cibabat<br>
-                                    Cimahi Utara<br>
-                                    Kota Cimahi<br>
-                                    Jawa Barat 40513
+                                    Rua Joaquim Pestana n.&ordm; 2<br>
+                                    9300-145 Câmara de Lobos<br>
+                                    R.A. Madeira, Portugal
                                 </p>
 
                                 <p class="text-light">
-                                    <i class="fas fa-phone"></i> 0898986362<br>
-                                    <i class="fas fa-envelope"></i> hello@freshcery.com
+                                    <i class="fas fa-phone"></i> +351 967 150 118<br>
+                                    <i class="fas fa-envelope"></i> support@freshcery.com
                                 </p>
                             </div>
                         </div>
@@ -67,7 +66,7 @@
                 </div>
             </div>
 
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.97915747782!2d107.58270291427688!3d-6.893096195019089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e67b57d420db%3A0x4dd071fcb9157e80!2sBTC+Fashion+Mall!5e0!3m2!1sen!2sid!4v1522964715022" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen></iframe>
+            <iframe src="https://maps.google.com/maps?q=32.653157,-16.981866&z=16&output=embed" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen></iframe>
         </section>
     </div>
 <?php require "includes/footer.php"; ?>
