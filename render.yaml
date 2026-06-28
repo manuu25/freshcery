@@ -1,6 +1,7 @@
 # Render Blueprint — https://render.com/docs/blueprint-spec
-# Render has no managed MySQL, so the DB lives on an external provider
-# (Railway / Aiven / Clever Cloud). Fill the DB_* values in the Render dashboard.
+# Everything runs on Render: a Docker PHP web service + a managed PostgreSQL DB.
+# The DB credentials are wired automatically via `fromDatabase`, so you don't set
+# any DB env var by hand.
 services:
   - type: web
     name: freshcery
@@ -9,17 +10,34 @@ services:
     dockerfilePath: ./Dockerfile
     autoDeploy: true
     envVars:
-      # APP_URL is optional: if unset, the app uses Render's auto-injected
-      # RENDER_EXTERNAL_URL. Only set this for a custom domain.
+      - key: DB_DRIVER
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: freshcery-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: freshcery-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: freshcery-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: freshcery-db
+          property: user
+      - key: DB_PASS
+        fromDatabase:
+          name: freshcery-db
+          property: password
+      # APP_URL optional: unset -> app uses Render's RENDER_EXTERNAL_URL.
       - key: APP_URL
         sync: false
-      - key: DB_HOST
-        sync: false
-      - key: DB_PORT
-        sync: false
-      - key: DB_NAME
-        sync: false
-      - key: DB_USER
-        sync: false
-      - key: DB_PASS
-        sync: false
+
+databases:
+  - name: freshcery-db
+    plan: free
+    databaseName: freshcery
+    user: freshcery

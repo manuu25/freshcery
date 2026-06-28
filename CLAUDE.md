@@ -43,6 +43,21 @@ Every page is a standalone PHP script that mixes logic and HTML. There is no rou
 
 `users`, `admins`, `categories`, `products`, `cart`, `orders`. Notable: `cart` denormalizes product fields (`pro_title`, `pro_price`, etc.) and is scoped by `user_id`; `products.status` (1/0) toggles visibility and read queries filter on `status = 1`; `products.category_id` → `categories.id`. The password column is named `mypassword` in both `users` and `admins`.
 
+## Deployment
+
+The app is deployed all-in-Render (Docker PHP + managed PostgreSQL) — see `DEPLOY.md`.
+To support this without breaking local XAMPP dev, two things became env-overridable (the
+old hardcoded values are the fallbacks):
+- **DB** (`config/config.php`): `DB_DRIVER` (`mysql` local / `pgsql` on Render),
+  `DB_HOST/PORT/NAME/USER/PASS`. The PDO DSN is built per driver.
+- **Base URL** (`includes/header.php`, `admin-panel/layouts/header.php`, and every
+  hardcoded redirect): resolved from `APP_URL` → Render's `RENDER_EXTERNAL_URL` →
+  `http://localhost/freshcery`.
+
+`freshcery.pg.sql` is the Postgres-converted schema/seed (the app SQL itself is portable
+— no MySQL-only syntax); `docker/entrypoint.sh` auto-seeds it on first boot and binds
+Apache to Render's `$PORT`.
+
 ## Styling
 
 `assets/css/theme.css` is compiled from `assets/sass/theme.scss` (+ partials in `assets/sass/_partials/`). No Sass build is wired up in the repo — if you change `.scss` you must compile to `theme.css` yourself with a Sass compiler. The admin panel uses a separate `admin-panel/styles/style.css` plus a CDN Bootstrap 4.

@@ -1,63 +1,51 @@
-# Deploying Freshcery to Render
+# Deploying Freshcery to Render (all-in-Render, free)
 
-This app is **PHP 8.1 + Apache (Docker)** on Render, talking to an **external MySQL**
-database (Render has no managed MySQL). All hardcoded `localhost/freshcery` URLs are
-now derived from the environment, and DB credentials come from env vars — local XAMPP
-development still works unchanged (the fallbacks are the old defaults).
+Everything runs on Render: a **Docker PHP 8.1 + Apache** web service and a **managed
+PostgreSQL** database. The app was migrated from MySQL to Postgres via a runtime driver
+switch (`DB_DRIVER`), so local XAMPP/MySQL development still works unchanged.
 
-## 1. Create a free MySQL database
+## One-click deploy (Blueprint)
 
-Render only offers managed PostgreSQL, so the DB lives elsewhere. Easiest options:
+1. Push this repo to your GitHub (already done: `manuu25/freshcery`).
+2. Render dashboard → **New → Blueprint** → select the repo.
+   Render reads [`render.yaml`](render.yaml) and creates **both**:
+   - `freshcery` — the Docker web service (free)
+   - `freshcery-db` — a managed PostgreSQL database (free)
+3. Click **Apply**. That's it — no env vars to set by hand:
+   - The DB credentials (`DB_HOST/PORT/NAME/USER/PASS`) are wired automatically from
+     `freshcery-db` via `fromDatabase`.
+   - `DB_DRIVER=pgsql` is set in the blueprint.
+   - The base URL comes from Render's auto-injected `RENDER_EXTERNAL_URL`.
+4. On first boot the container **auto-seeds the database** from
+   [`freshcery.pg.sql`](freshcery.pg.sql) (schema + demo products/categories/users).
+   This is idempotent: it only runs when the `users` table is missing, so restarts and
+   redeploys never wipe your data.
 
-- **Railway** (recommended — plain connection, no SSL fuss): new project → *Add MySQL*.
-  Copy `MYSQLHOST`, `MYSQLPORT`, `MYSQLDATABASE`, `MYSQLUSER`, `MYSQLPASSWORD`.
-- **Aiven** / **Clever Cloud**: also free MySQL, but Aiven enforces TLS (the current
-  `config/config.php` connects without an SSL CA, so prefer Railway unless you add SSL).
+First build takes ~3–4 min (pulls the PHP image, compiles `pdo_pgsql`, installs `psql`).
+Your site will be at **`https://freshcery-xxxx.onrender.com`**.
 
-## 2. Import the schema
+## Manual DB seeding (only if you skip auto-seed)
 
-Load `freshcery.sql` (repo root) into that database, e.g.:
+If you ever need to (re)load the schema yourself, grab the database's *External
+Connection* string from the Render dashboard and run:
 
 ```bash
-mysql -h <DB_HOST> -P <DB_PORT> -u <DB_USER> -p <DB_NAME> < freshcery.sql
+psql "<EXTERNAL_DATABASE_URL>" -f freshcery.pg.sql
 ```
-
-…or paste its contents into the provider's web SQL console.
-
-## 3. Put the code on your GitHub
-
-The current `origin` points at the original author's repo. Create your own and push:
-
-```bash
-gh repo create freshcery --public --source=. --remote=deploy --push
-```
-
-## 4. Create the Render service
-
-1. Render dashboard → **New → Blueprint**, pick your repo. It reads `render.yaml`
-   and provisions a free Docker web service automatically.
-   *(Or: New → Web Service → Docker runtime, repo root, free plan.)*
-2. Under the service's **Environment**, set:
-   | Key       | Value (from step 1)        |
-   |-----------|----------------------------|
-   | `DB_HOST` | your MySQL host            |
-   | `DB_PORT` | e.g. `3306` (Railway differs) |
-   | `DB_NAME` | your database name         |
-   | `DB_USER` | your DB user               |
-   | `DB_PASS` | your DB password           |
-3. Leave `APP_URL` empty — the app auto-uses Render's `RENDER_EXTERNAL_URL`
-   (`https://<service>.onrender.com`). Only set `APP_URL` if you add a custom domain.
-4. **Create / Deploy.** First build pulls the PHP image and compiles `pdo_mysql`
-   (~2–3 min).
-
-Your subdomain will be `https://<service-name>.onrender.com`.
 
 ## Notes
 
-- Free Render web services **sleep after ~15 min idle**; the first request after that
-  takes ~30–50 s to wake.
-- Admin panel: `/<base>/admin-panel/admins/login-admins.php`. Seeded admin/user
-  password hashes are in the dump but the plaintext is unknown — if you can't log in,
-  insert a fresh row with a hash from `password_hash('yourpass', PASSWORD_DEFAULT)`.
-- PayPal in `products/charge.php` uses a sandbox client-id; payments are demo-only.
-- The container rewrites Apache to listen on Render's `$PORT` via `docker/entrypoint.sh`.
+- **Free tier sleeps** after ~15 min idle; the first request afterwards takes ~30–50 s
+  to wake. Render's **free PostgreSQL is removed after ~30 days** — fine for a demo,
+  upgrade if you need it to persist.
+- Admin panel: `/admin-panel/admins/login-admins.php`. The seeded admin/user password
+  hashes are in `freshcery.pg.sql` but the plaintext is unknown. To get in, insert a row
+  with a known hash, e.g. run in psql:
+  ```sql
+  INSERT INTO admins (adminname, email, mypassword)
+  VALUES ('me', 'me@example.com', '<paste output of password_hash()>');
+  ```
+- PayPal in `products/charge.php` uses a sandbox client-id — payments are demo-only.
+- Want to switch back to MySQL (e.g. an external provider) instead of Postgres? Set
+  `DB_DRIVER=mysql` and point `DB_*` at the MySQL host; import `freshcery.sql` (the
+  original MySQL dump) instead.

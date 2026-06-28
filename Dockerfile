@@ -1,8 +1,13 @@
 # Freshcery — PHP + Apache image for Render (Docker runtime)
 FROM php:8.1-apache
 
-# PDO MySQL driver (the app talks to MySQL only through PDO)
-RUN docker-php-ext-install pdo_mysql
+# PDO drivers + psql client. pgsql is used on Render (needs libpq-dev); mysql is
+# kept so the same image also runs against a local/MySQL database if DB_DRIVER=mysql.
+# postgresql-client (psql) is used by the entrypoint to auto-seed the DB on first boot.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libpq-dev postgresql-client \
+    && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-install pdo_pgsql pdo_mysql
 
 # This is legacy PHP-7 code: on PHP 8 it emits "undefined array key" warnings
 # that would otherwise leak into the HTML. Hide them in production, keep logging.
