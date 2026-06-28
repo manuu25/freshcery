@@ -9,6 +9,10 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile
     autoDeploy: true
+    # Reliable HTTP health check so Render keeps the instance in routing rotation
+    # (without it the free service flaps and the edge returns intermittent
+    # "no-server" 404s). Apache serves /index.php with a stable 200.
+    healthCheckPath: /index.php
     envVars:
       - key: DB_DRIVER
         value: pgsql

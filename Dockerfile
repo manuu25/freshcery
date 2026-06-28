@@ -17,6 +17,10 @@ RUN { \
       echo "log_errors = On"; \
     } > /usr/local/etc/php/conf.d/zz-app.ini
 
+# Silence the "Could not reliably determine the server's fully qualified domain
+# name" warning on boot.
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 # App code
 COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
